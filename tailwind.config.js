@@ -7,7 +7,11 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        inside: "0 0 10px rgba(0,0,0,0.2) inset",
+      },
+    },
   },
   plugins: [
     require("@tailwindcss/forms")({
