@@ -39,14 +39,14 @@ const Input: React.FunctionComponent<InputProps> = ({
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-1 w-full">
       <label
         htmlFor={id}
         className="block text-sm font-medium leading-6 text-slate-900 capitalize transition-all dark:text-gray-200"
       >
         {label}
       </label>
-      <div className="mt-1 relative">
+      <div className="relative">
         <input
           id={id}
           type={handleInputType()}

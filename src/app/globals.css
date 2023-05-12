@@ -9,5 +9,5 @@
 html,
 body,
 :root {
-  height: 100%;
+  @apply h-screen w-screen bg-gray-200 dark:bg-slate-900 transition-all;
 }
