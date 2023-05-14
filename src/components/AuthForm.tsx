@@ -1,9 +1,12 @@
 "use client";
+import axios from "axios";
 import { FacebookIcon } from "lucide-react";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { FunctionComponent, useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import Button from "./Button";
 import ButtonAuthSocial from "./ButtonAuthSocial";
 import Input from "./Input";
@@ -34,13 +37,27 @@ const AuthForm: FunctionComponent = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
+    console.log(data);
 
     if (variant === "REGISTER") {
-      //AXIOS REGISTER
+      axios
+        .post("/api/register", data)
+        .catch(() => toast.error("Somenthing  went wrong!"))
+        .finally(() => setIsLoading(false));
     }
 
     if (variant === "LOGIN") {
-      //NEXTAUTH LOGIN
+      signIn("credentials", { ...data, redirect: false })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error("Invalid credentials!");
+          }
+
+          if (callback?.ok && !callback?.error) {
+            toast.success("Logged in!");
+          }
+        })
+        .finally(() => setIsLoading(false));
     }
   };
 
@@ -49,7 +66,7 @@ const AuthForm: FunctionComponent = () => {
   };
 
   return (
-    <div className="w-6/12 flex justify-around items-center bg-gray-50 px-2 py-6 rounded-2xl shadow-xl transition-all dark:bg-slate-800 2xl:w-5/12 max-md:flex-col max-lg:w-9/12 max-[600px]:w-11/12 max-[600px]:block">
+    <div className="-mt-6 w-6/12 flex justify-around items-center bg-gray-50 px-2 py-6 rounded-2xl shadow-xl transition-all dark:bg-slate-800 2xl:w-5/12 max-md:flex-col max-lg:w-9/12 max-[600px]:w-11/12 max-[600px]:block">
       <Image
         src="/login-animate.svg"
         alt="login animate image"
