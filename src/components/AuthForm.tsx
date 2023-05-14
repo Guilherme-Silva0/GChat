@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { FacebookIcon } from "lucide-react";
+import { GithubIcon } from "lucide-react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -127,9 +127,9 @@ const AuthForm: FunctionComponent = () => {
               icon={"google"}
             />
             <ButtonAuthSocial
-              onClick={() => socialAction("facebook")}
-              media="facebook"
-              icon={FacebookIcon}
+              onClick={() => socialAction("github")}
+              media="github"
+              icon={GithubIcon}
             />
           </div>
         </fieldset>

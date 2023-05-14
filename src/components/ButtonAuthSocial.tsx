@@ -5,7 +5,7 @@ import Image from "next/image";
 interface ButtonAuthSocialProps {
   icon: LucideIcon | "google";
   onClick: React.MouseEventHandler<HTMLButtonElement>;
-  media: "google" | "facebook";
+  media: "google" | "github";
 }
 
 const ButtonAuthSocial: React.FunctionComponent<ButtonAuthSocialProps> = ({
@@ -19,7 +19,7 @@ const ButtonAuthSocial: React.FunctionComponent<ButtonAuthSocialProps> = ({
       onClick={onClick}
       className={clsx(
         "flex flex-1 justify-center items-center gap-2 py-2 rounded text-gray-200 capitalize active:scale-95 focus-visible:ring-2 focus-visible:ring-sky-500",
-        media === "facebook" && "bg-blue-500",
+        media === "github" && "bg-zinc-900",
         media === "google" && "bg-red-400"
       )}
     >
