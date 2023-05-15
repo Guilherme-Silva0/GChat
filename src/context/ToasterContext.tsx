@@ -17,6 +17,7 @@ const ToasterContext = () => {
             theme === "light" ? "rgb(2 6 23/ 1)" : "rgb(229 231 235 / 1)"
           }`,
         },
+        duration: 5000,
       }}
     />
   );
