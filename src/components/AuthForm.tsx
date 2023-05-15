@@ -1,18 +1,36 @@
 "use client";
-import axios from "axios";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios, { AxiosError } from "axios";
 import { GithubIcon } from "lucide-react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { FunctionComponent, useCallback, useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { z } from "zod";
 import Button from "./Button";
 import ButtonAuthSocial from "./ButtonAuthSocial";
 import Input from "./Input";
 import Text from "./Text";
 
 type Variant = "LOGIN" | "REGISTER";
+
+const schema = z.object({
+  name: z.string().trim().nonempty("All inputs are required"),
+  email: z
+    .string()
+    .trim()
+    .email("Invalid email")
+    .nonempty("All inputs are required"),
+  password: z
+    .string()
+    .trim()
+    .nonempty("All inputs are required")
+    .min(8, "Password must be at least 8 caracters long"),
+});
+
+export type FormProps = z.infer<typeof schema>;
 
 const AuthForm: FunctionComponent = () => {
   const [variant, setVariant] = useState<Variant>("LOGIN");
@@ -22,27 +40,37 @@ const AuthForm: FunctionComponent = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldValues>({
+  } = useForm<FormProps>({
     defaultValues: {
       name: "",
       email: "",
       password: "",
     },
+    resolver: zodResolver(schema),
+    mode: "onSubmit",
   });
+
+  useEffect(() => {
+    errors &&
+      Object.keys(errors).map((fieldName) => {
+        toast.error(errors[fieldName as keyof FormProps]?.message ?? null);
+      });
+  }, [errors]);
 
   const toggleVariant = useCallback(() => {
     if (variant === "LOGIN") setVariant("REGISTER");
     if (variant === "REGISTER") setVariant("LOGIN");
   }, [variant]);
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit = (data: FormProps) => {
     setIsLoading(true);
-    console.log(data);
 
     if (variant === "REGISTER") {
       axios
         .post("/api/register", data)
-        .catch(() => toast.error("Somenthing  went wrong!"))
+        .catch((err: AxiosError) =>
+          toast.error((err.response?.data as string) ?? null)
+        )
         .finally(() => setIsLoading(false));
     }
 

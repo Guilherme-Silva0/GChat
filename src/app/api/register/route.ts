@@ -2,19 +2,42 @@ import prismaClient from "@/libs/prisma";
 import bcrypt from "bcrypt";
 import { randomInt } from "crypto";
 import { NextResponse } from "next/server";
+import { z } from "zod";
+
+const schema = z.object({
+  name: z.string().trim().nonempty("All inputs are required"),
+  email: z
+    .string()
+    .trim()
+    .email("Invalid email")
+    .nonempty("All inputs are required"),
+  password: z
+    .string()
+    .trim()
+    .nonempty("All inputs are required")
+    .min(8, "Password must be at least 8 caracters long"),
+});
+
+type DataProps = z.infer<typeof schema>;
 
 export async function POST(req: Request) {
+  const body: DataProps = await req.json();
+  const { name, email, password } = body;
+
   try {
-    const body = await req.json();
-    const { name, email, password } = body;
+    schema.parse({
+      name,
+      email,
+      password,
+    });
+  } catch (error) {
+    return new NextResponse("Invalid data", { status: 400 });
+  }
 
-    if (!name || !email || !password) {
-      return new NextResponse("Missing info", { status: 400 });
-    }
+  const randomSalt = randomInt(10, 16);
+  const hashedPassword = await bcrypt.hash(password, randomSalt);
 
-    const randomSalt = randomInt(10, 16);
-    const hashedPassword = await bcrypt.hash(password, randomSalt);
-
+  try {
     const user = await prismaClient.user.create({
       data: {
         name,
@@ -22,7 +45,6 @@ export async function POST(req: Request) {
         hashedPassword,
       },
     });
-
     return NextResponse.json(user);
   } catch (error) {
     console.log(error, "ERROR_REGISTRATION");
