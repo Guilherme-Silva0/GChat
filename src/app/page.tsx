@@ -9,9 +9,9 @@ export default function Home() {
         <Image
           src="/images/logo.png"
           alt="Logo"
-          height={300}
-          width={300}
-          className="w-14 -m-2"
+          height={56}
+          width={56}
+          className="-m-2 drop-shadow-lg"
         />
         <ThemeButton />
       </header>
