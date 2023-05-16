@@ -20,6 +20,15 @@ const schema = z.object({
 
 type DataProps = z.infer<typeof schema>;
 
+const getUserByEmail = async (email: string) => {
+  const user = await prismaClient.user.findFirst({
+    where: {
+      email,
+    },
+  });
+  return user;
+};
+
 export async function POST(req: Request) {
   const body: DataProps = await req.json();
   const { name, email, password } = body;
@@ -32,6 +41,11 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     return new NextResponse("Invalid data", { status: 400 });
+  }
+
+  const userAlreadyExists = await getUserByEmail(email);
+  if (userAlreadyExists) {
+    return new NextResponse("E-mail already registed", { status: 400 });
   }
 
   const randomSalt = randomInt(10, 16);
