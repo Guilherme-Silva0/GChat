@@ -27,7 +27,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({
       disabled={disable}
       onClick={onClick}
       className={clsx(
-        "active:scale-95 flex justify-center rounded-md px-3 py-2 text-sm font-semibold transition-all focus-visible:ring-2 focus-visible:ring-sky-500",
+        "active:scale-95 flex justify-center rounded-md px-3 py-2 font-semibold transition-all focus-visible:ring-2 focus-visible:ring-sky-500",
         disable && "opacity-50 cursor-default",
         fullWidth && "w-full",
         secondary
