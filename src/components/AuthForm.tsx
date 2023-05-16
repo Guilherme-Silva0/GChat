@@ -12,6 +12,7 @@ import { z } from "zod";
 import Button from "./Button";
 import ButtonAuthSocial from "./ButtonAuthSocial";
 import Input from "./Input";
+import Load from "./Load";
 import Text from "./Text";
 
 type Variant = "LOGIN" | "REGISTER";
@@ -105,7 +106,7 @@ const AuthForm: FunctionComponent = () => {
   };
 
   return (
-    <div className="-mt-6 w-6/12 flex justify-around items-center bg-gray-50 px-2 py-6 rounded-2xl shadow-xl transition-all dark:bg-slate-800 2xl:w-5/12 max-md:flex-col max-lg:w-9/12 max-[600px]:w-11/12 max-[600px]:block">
+    <div className="-mt-20 w-6/12 flex justify-around items-center bg-gray-50 px-2 py-6 rounded-2xl shadow-xl transition-all dark:bg-slate-800 2xl:w-5/12 max-md:flex-col max-lg:w-9/12 max-[600px]:w-11/12 max-[600px]:block max-[390px]:-mt-0">
       <Image
         src="/login-animate.svg"
         alt="login animate image"
@@ -155,7 +156,7 @@ const AuthForm: FunctionComponent = () => {
         />
 
         <Button disable={isLoading} fullWidth type="submit">
-          {variant === "LOGIN" ? "Login" : "Sign in"}
+          {isLoading ? <Load /> : variant === "LOGIN" ? "Login" : "Sign in"}
         </Button>
         <fieldset className="w-full border-t text-center border-gray-400">
           <legend className="mx-auto px-3">Or</legend>
