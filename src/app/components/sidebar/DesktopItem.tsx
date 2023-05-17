@@ -30,8 +30,8 @@ const DesktopItem = ({
       <Link
         href={href}
         className={clsx(
-          "group flex gap-x-3 rounded-md p-3 text-sm leading-6 font-semibold text-gray-500 transition-all hover:text-slate-900 hover:bg-white",
-          active && "bg-white text-slate-900"
+          "group flex gap-x-3 rounded-md p-3 text-sm leading-6 font-semibold text-gray-500 transition-all hover:text-slate-900 hover:bg-white dark:hover:bg-slate-950 dark:hover:text-white",
+          active && "bg-white text-slate-900 dark:bg-slate-950 dark:text-white"
         )}
       >
         <Icon className="h-6 w-6 shrink-0" aria-hidden="true" />
