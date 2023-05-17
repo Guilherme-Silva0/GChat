@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { FormProps } from "./AuthForm";
+import { FormProps } from "../app/components/AuthForm";
 
 interface InputProps {
   label: string;

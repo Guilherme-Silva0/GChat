@@ -1,6 +1,6 @@
-import AuthForm from "@/components/AuthForm";
 import ThemeButton from "@/components/ThemeButton";
 import Image from "next/image";
+import AuthForm from "./components/AuthForm";
 
 export default function Home() {
   return (
