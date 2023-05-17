@@ -1,4 +1,5 @@
 "use client";
+import AuthContext from "@/context/AuthContext";
 import ToasterContext from "@/context/ToasterContext";
 import { ThemeProvider } from "next-themes";
 
@@ -8,9 +9,11 @@ interface ProvidersProps {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <ThemeProvider attribute="class">
-      <ToasterContext />
-      {children}
-    </ThemeProvider>
+    <AuthContext>
+      <ThemeProvider attribute="class">
+        <ToasterContext />
+        {children}
+      </ThemeProvider>
+    </AuthContext>
   );
 }
