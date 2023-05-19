@@ -79,7 +79,7 @@ const ConversationBox = ({ item, selected }: ConversationBoxProps) => {
         <Text
           className={clsx(
             "text-sm whitespace-nowrap overflow-hidden text-ellipsis",
-            true
+            hasSeen
               ? "text-gray-500 dark:text-gray-500"
               : "text-slate-900 font-medium dark:text-gray-100"
           )}
