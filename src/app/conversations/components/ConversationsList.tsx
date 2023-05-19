@@ -23,7 +23,7 @@ const ConversationsList = ({ initialItems }: ConversationsListProps) => {
   return (
     <aside
       className={clsx(
-        "fixed inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-80 lb:block overflow-y-auto border-r border-gray-300 block w-full left-0 dark:border-slate-950",
+        "fixed inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-80 lg:block overflow-y-auto border-r border-gray-300 transition-all dark:border-slate-950",
         isOpen ? "hidden" : "block w-full left-0"
       )}
     >
