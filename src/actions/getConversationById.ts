@@ -1,12 +1,12 @@
-import getCurrentUser from "@/actions/getCurrentUser";
-import prismaClient from "@/libs/prisma";
+import getCurrentUser from '@/actions/getCurrentUser'
+import prismaClient from '@/libs/prisma'
 
 const getConversationsById = async (conversationId: string) => {
   try {
-    const currentUser = await getCurrentUser();
+    const currentUser = await getCurrentUser()
 
     if (!currentUser?.email) {
-      return null;
+      return null
     }
 
     const conversation = await prismaClient.conversation.findUnique({
@@ -16,12 +16,12 @@ const getConversationsById = async (conversationId: string) => {
       include: {
         users: true,
       },
-    });
+    })
 
-    return conversation;
+    return conversation
   } catch (_error) {
-    return null;
+    return null
   }
-};
+}
 
-export default getConversationsById;
+export default getConversationsById

@@ -1,10 +1,10 @@
-"use client";
-import AuthContext from "@/context/AuthContext";
-import ToasterContext from "@/context/ToasterContext";
-import { ThemeProvider } from "next-themes";
+'use client'
+import AuthContext from '@/context/AuthContext'
+import ToasterContext from '@/context/ToasterContext'
+import { ThemeProvider } from 'next-themes'
 
 interface ProvidersProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export function Providers({ children }: ProvidersProps) {
@@ -15,5 +15,5 @@ export function Providers({ children }: ProvidersProps) {
         {children}
       </ThemeProvider>
     </AuthContext>
-  );
+  )
 }

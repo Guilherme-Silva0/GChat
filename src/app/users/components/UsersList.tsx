@@ -1,8 +1,8 @@
-"use client";
-import Text from "@/components/Text";
-import ThemeButton from "@/components/ThemeButton";
-import { User } from "@prisma/client";
-import UserBox from "./UserBox";
+'use client'
+import Text from '@/components/Text'
+import ThemeButton from '@/components/ThemeButton'
+import { User } from '@prisma/client'
+import UserBox from './UserBox'
 
 const UsersList = ({ users }: { users: User[] }) => {
   return (
@@ -19,7 +19,7 @@ const UsersList = ({ users }: { users: User[] }) => {
         ))}
       </div>
     </aside>
-  );
-};
+  )
+}
 
-export default UsersList;
+export default UsersList

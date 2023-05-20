@@ -1,9 +1,9 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent } from 'react'
 
 interface TextProps {
-  children: React.ReactNode;
-  paragraph?: boolean;
-  className?: string;
+  children: React.ReactNode
+  paragraph?: boolean
+  className?: string
 }
 
 const Text: FunctionComponent<TextProps> = ({
@@ -23,7 +23,7 @@ const Text: FunctionComponent<TextProps> = ({
     >
       {children}
     </p>
-  );
-};
+  )
+}
 
-export default Text;
+export default Text

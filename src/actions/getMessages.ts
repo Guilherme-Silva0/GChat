@@ -1,4 +1,4 @@
-import prismaClient from "@/libs/prisma";
+import prismaClient from '@/libs/prisma'
 
 const getMessages = async (conversationId: string) => {
   try {
@@ -11,14 +11,14 @@ const getMessages = async (conversationId: string) => {
         seen: true,
       },
       orderBy: {
-        createdAt: "asc",
+        createdAt: 'asc',
       },
-    });
+    })
 
-    return messages;
+    return messages
   } catch (_error) {
-    return [];
+    return []
   }
-};
+}
 
-export default getMessages;
+export default getMessages

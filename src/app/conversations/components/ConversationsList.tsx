@@ -1,30 +1,30 @@
-"use client";
+'use client'
 
-import Text from "@/components/Text";
-import ThemeButton from "@/components/ThemeButton";
-import useConversation from "@/hooks/useConversation";
-import { FullConversationType } from "@/types";
-import clsx from "clsx";
-import { Users2Icon } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import ConversationBox from "./ConversationBox";
+import Text from '@/components/Text'
+import ThemeButton from '@/components/ThemeButton'
+import useConversation from '@/hooks/useConversation'
+import { FullConversationType } from '@/types'
+import clsx from 'clsx'
+import { Users2Icon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import ConversationBox from './ConversationBox'
 
 interface ConversationsListProps {
-  initialItems: FullConversationType[];
+  initialItems: FullConversationType[]
 }
 
 const ConversationsList = ({ initialItems }: ConversationsListProps) => {
-  const [items, setItems] = useState(initialItems);
-  const router = useRouter();
+  const [items, setItems] = useState(initialItems)
+  const router = useRouter()
 
-  const { conversationId, isOpen } = useConversation();
+  const { conversationId, isOpen } = useConversation()
 
   return (
     <aside
       className={clsx(
-        "fixed inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-80 lg:block overflow-y-auto border-r border-gray-300 transition-all dark:border-slate-950",
-        isOpen ? "hidden" : "block w-full left-0"
+        'fixed inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-80 lg:block overflow-y-auto border-r border-gray-300 transition-all dark:border-slate-950',
+        isOpen ? 'hidden' : 'block w-full left-0',
       )}
     >
       <div className="px-5">
@@ -48,7 +48,7 @@ const ConversationsList = ({ initialItems }: ConversationsListProps) => {
         ))}
       </div>
     </aside>
-  );
-};
+  )
+}
 
-export default ConversationsList;
+export default ConversationsList

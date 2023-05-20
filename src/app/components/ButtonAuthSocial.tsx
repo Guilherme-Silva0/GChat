@@ -1,11 +1,11 @@
-import clsx from "clsx";
-import { LucideIcon } from "lucide-react";
-import Image from "next/image";
+import clsx from 'clsx'
+import { LucideIcon } from 'lucide-react'
+import Image from 'next/image'
 
 interface ButtonAuthSocialProps {
-  icon: LucideIcon | "google";
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-  media: "google" | "github";
+  icon: LucideIcon | 'google'
+  onClick: React.MouseEventHandler<HTMLButtonElement>
+  media: 'google' | 'github'
 }
 
 const ButtonAuthSocial: React.FunctionComponent<ButtonAuthSocialProps> = ({
@@ -18,12 +18,12 @@ const ButtonAuthSocial: React.FunctionComponent<ButtonAuthSocialProps> = ({
       type="button"
       onClick={onClick}
       className={clsx(
-        "flex flex-1 justify-center items-center gap-2 py-2 rounded text-gray-200 capitalize active:scale-95 focus-visible:ring-2 focus-visible:ring-sky-500",
-        media === "github" && "bg-zinc-900",
-        media === "google" && "bg-red-400"
+        'flex flex-1 justify-center items-center gap-2 py-2 rounded text-gray-200 capitalize active:scale-95 focus-visible:ring-2 focus-visible:ring-sky-500',
+        media === 'github' && 'bg-zinc-900',
+        media === 'google' && 'bg-red-400',
       )}
     >
-      {Icon === "google" ? (
+      {Icon === 'google' ? (
         <Image
           alt="google icon"
           src="/google.svg"
@@ -36,7 +36,7 @@ const ButtonAuthSocial: React.FunctionComponent<ButtonAuthSocialProps> = ({
       )}
       {media}
     </button>
-  );
-};
+  )
+}
 
-export default ButtonAuthSocial;
+export default ButtonAuthSocial

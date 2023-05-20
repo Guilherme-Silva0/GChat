@@ -1,30 +1,30 @@
-"use client";
-import Avatar from "@/app/components/Avatar";
-import Text from "@/components/Text";
-import { User } from "@prisma/client";
-import axios, { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
-import { toast } from "react-hot-toast";
+'use client'
+import Avatar from '@/app/components/Avatar'
+import Text from '@/components/Text'
+import { User } from '@prisma/client'
+import axios, { AxiosError } from 'axios'
+import { useRouter } from 'next/navigation'
+import { useCallback, useState } from 'react'
+import { toast } from 'react-hot-toast'
 
 const UserBox = ({ user }: { user: User }) => {
-  const router = useRouter();
-  const [isLoading, SetIsLoading] = useState(false);
+  const router = useRouter()
+  const [isLoading, SetIsLoading] = useState(false)
 
   const handleClick = useCallback(() => {
-    SetIsLoading(true);
+    SetIsLoading(true)
     axios
-      .post("api/conversations", {
+      .post('api/conversations', {
         userId: user.id,
       })
       .then((data) => {
-        router.push(`/conversations/${data.data.id}`);
+        router.push(`/conversations/${data.data.id}`)
       })
       .catch((error: AxiosError) => {
-        toast.error((error.response?.data as string) ?? null);
+        toast.error((error.response?.data as string) ?? null)
       })
-      .finally(() => SetIsLoading(false));
-  }, [router, user]);
+      .finally(() => SetIsLoading(false))
+  }, [router, user])
 
   return (
     <div
@@ -36,7 +36,7 @@ const UserBox = ({ user }: { user: User }) => {
         {user.name}
       </Text>
     </div>
-  );
-};
+  )
+}
 
-export default UserBox;
+export default UserBox

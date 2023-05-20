@@ -1,19 +1,19 @@
-import getCurrentUser from "@/actions/getCurrentUser";
-import prismaClient from "@/libs/prisma";
-import { NextResponse } from "next/server";
+import getCurrentUser from '@/actions/getCurrentUser'
+import prismaClient from '@/libs/prisma'
+import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
   try {
-    const currentUser = await getCurrentUser();
-    const body = await request.json();
-    const { userId, isGroup, members, name } = body;
+    const currentUser = await getCurrentUser()
+    const body = await request.json()
+    const { userId, isGroup, members, name } = body
 
     if (!currentUser?.id || !currentUser.email) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return new NextResponse('Unauthorized', { status: 401 })
     }
 
     if (isGroup && (!members || members.length < 2 || !name)) {
-      return new NextResponse("Invalid data", { status: 400 });
+      return new NextResponse('Invalid data', { status: 400 })
     }
 
     if (isGroup) {
@@ -35,9 +35,9 @@ export async function POST(request: Request) {
         include: {
           users: true,
         },
-      });
+      })
 
-      return NextResponse.json(newConversation);
+      return NextResponse.json(newConversation)
     }
 
     const existingConversations = await prismaClient.conversation.findMany({
@@ -55,10 +55,10 @@ export async function POST(request: Request) {
           },
         ],
       },
-    });
+    })
 
     if (existingConversations[0]) {
-      return NextResponse.json(existingConversations[0]);
+      return NextResponse.json(existingConversations[0])
     }
 
     const newConversation = await prismaClient.conversation.create({
@@ -77,10 +77,10 @@ export async function POST(request: Request) {
       include: {
         users: true,
       },
-    });
+    })
 
-    return NextResponse.json(newConversation);
+    return NextResponse.json(newConversation)
   } catch (error) {
-    return new NextResponse("Internal error", { status: 500 });
+    return new NextResponse('Internal error', { status: 500 })
   }
 }

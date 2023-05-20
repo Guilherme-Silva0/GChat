@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Text from "../../components/Text";
+import Image from 'next/image'
+import Text from '../../components/Text'
 
 const StateEmpty = () => {
   return (
@@ -16,7 +16,7 @@ const StateEmpty = () => {
         </Text>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default StateEmpty;
+export default StateEmpty

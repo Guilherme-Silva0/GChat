@@ -1,11 +1,11 @@
-import prismaClient from "@/libs/prisma";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import bcrypt from "bcrypt";
-import { AuthOptions } from "next-auth";
-import NextAuth from "next-auth/next";
-import CredentialsProvider from "next-auth/providers/credentials";
-import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
+import prismaClient from '@/libs/prisma'
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import bcrypt from 'bcrypt'
+import { AuthOptions } from 'next-auth'
+import NextAuth from 'next-auth/next'
+import CredentialsProvider from 'next-auth/providers/credentials'
+import GithubProvider from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prismaClient),
@@ -19,46 +19,46 @@ export const authOptions: AuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
     CredentialsProvider({
-      name: "credentials",
+      name: 'credentials',
       credentials: {
-        email: { label: "email", type: "text" },
-        password: { label: "password", type: "password" },
+        email: { label: 'email', type: 'text' },
+        password: { label: 'password', type: 'password' },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Invalid Credentials");
+          throw new Error('Invalid Credentials')
         }
 
         const user = await prismaClient.user.findUnique({
           where: {
             email: credentials.email,
           },
-        });
+        })
 
         if (!user || !user.hashedPassword) {
-          throw new Error("Invalid Credentials");
+          throw new Error('Invalid Credentials')
         }
 
         const isValidPassword = await bcrypt.compare(
           credentials.password,
-          user.hashedPassword
-        );
+          user.hashedPassword,
+        )
 
         if (!isValidPassword) {
-          throw new Error("Invalid Credentials");
+          throw new Error('Invalid Credentials')
         }
 
-        return user;
+        return user
       },
     }),
   ],
-  debug: process.env.NODE_ENV === "development",
+  debug: process.env.NODE_ENV === 'development',
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   secret: process.env.NEXTAUTH_SECRET,
-};
+}
 
-const handle = NextAuth(authOptions);
+const handle = NextAuth(authOptions)
 
-export { handle as GET, handle as POST };
+export { handle as GET, handle as POST }

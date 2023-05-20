@@ -1,38 +1,38 @@
-import { LogOutIcon, MessageCircleIcon, User2Icon } from "lucide-react";
-import { signOut } from "next-auth/react";
-import { usePathname } from "next/navigation";
-import { useMemo } from "react";
-import useConversation from "./useConversation";
+import { LogOutIcon, MessageCircleIcon, User2Icon } from 'lucide-react'
+import { signOut } from 'next-auth/react'
+import { usePathname } from 'next/navigation'
+import { useMemo } from 'react'
+import useConversation from './useConversation'
 
 const useRoutes = () => {
-  const pathname = usePathname();
-  const { conversationId } = useConversation();
+  const pathname = usePathname()
+  const { conversationId } = useConversation()
 
   const routes = useMemo(
     () => [
       {
-        label: "chat",
-        href: "/conversations",
+        label: 'chat',
+        href: '/conversations',
         icon: MessageCircleIcon,
-        active: pathname === "/conversations" || !!conversationId,
+        active: pathname === '/conversations' || !!conversationId,
       },
       {
-        label: "Users",
-        href: "/users",
+        label: 'Users',
+        href: '/users',
         icon: User2Icon,
-        active: pathname === "/users",
+        active: pathname === '/users',
       },
       {
-        label: "Logout",
-        href: "#",
+        label: 'Logout',
+        href: '#',
         onClick: () => signOut(),
         icon: LogOutIcon,
       },
     ],
-    [pathname, conversationId]
-  );
+    [pathname, conversationId],
+  )
 
-  return routes;
-};
+  return routes
+}
 
-export default useRoutes;
+export default useRoutes
