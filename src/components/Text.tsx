@@ -1,7 +1,7 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, ReactNode } from 'react'
 
 interface TextProps {
-  children: React.ReactNode
+  children: ReactNode
   paragraph?: boolean
   className?: string
 }

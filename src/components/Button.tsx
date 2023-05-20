@@ -1,18 +1,19 @@
 'use client'
 
 import clsx from 'clsx'
+import { FunctionComponent, MouseEventHandler, ReactNode } from 'react'
 
 interface ButtonProps {
-  children: React.ReactNode
+  children: ReactNode
   type?: 'button' | 'submit' | 'reset'
   fullWidth?: boolean
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  onClick?: MouseEventHandler<HTMLButtonElement>
   secondary?: boolean
   danger?: boolean
   disable?: boolean
 }
 
-const Button: React.FunctionComponent<ButtonProps> = ({
+const Button: FunctionComponent<ButtonProps> = ({
   children,
   type,
   fullWidth,
@@ -27,8 +28,8 @@ const Button: React.FunctionComponent<ButtonProps> = ({
       disabled={disable}
       onClick={onClick}
       className={clsx(
-        'active:scale-95 flex justify-center rounded-md px-3 py-2 font-semibold transition-all focus-visible:ring-2 focus-visible:ring-sky-500',
-        disable && 'opacity-50 cursor-default',
+        'flex justify-center rounded-md px-3 py-2 font-semibold transition-all focus-visible:ring-2 focus-visible:ring-sky-500 active:scale-95',
+        disable && 'cursor-default opacity-50',
         fullWidth && 'w-full',
         secondary
           ? 'text-slate-900 dark:text-gray-200'

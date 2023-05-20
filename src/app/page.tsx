@@ -5,7 +5,7 @@ import AuthForm from './components/AuthForm'
 export default function Home() {
   return (
     <>
-      <header className="relative py-2 px-4 w-full bg-gray-100 flex justify-between shadow-lg items-center transition-all dark:bg-slate-800">
+      <header className="relative flex w-full items-center justify-between bg-gray-100 px-4 py-2 shadow-lg transition-all dark:bg-slate-800">
         <Image
           src="/images/logo.png"
           alt="Logo"
@@ -15,7 +15,7 @@ export default function Home() {
         />
         <ThemeButton />
       </header>
-      <main className="flex flex-col bg-gray-200 w-full min-h-full justify-center items-center transition-all dark:bg-slate-900">
+      <main className="flex min-h-full w-full flex-col items-center justify-center bg-gray-200 transition-all dark:bg-slate-900">
         <AuthForm />
       </main>
     </>

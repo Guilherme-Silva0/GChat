@@ -2,9 +2,10 @@
 import AuthContext from '@/context/AuthContext'
 import ToasterContext from '@/context/ToasterContext'
 import { ThemeProvider } from 'next-themes'
+import { ReactNode } from 'react'
 
 interface ProvidersProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export function Providers({ children }: ProvidersProps) {

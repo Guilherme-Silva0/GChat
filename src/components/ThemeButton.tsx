@@ -22,7 +22,7 @@ const ThemeButton = ({ className }: { className?: string }) => {
   return (
     <button
       onClick={toggleTheme}
-      className={`p-1.5 rounded-lg text-xl text-fist font-black transition-all dark:text-gray-100 ${className}`}
+      className={`text-fist rounded-lg p-1.5 text-xl font-black transition-all dark:text-gray-100 ${className}`}
     >
       {theme === 'light' ? <Sun /> : <Moon />}
     </button>

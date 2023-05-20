@@ -62,9 +62,9 @@ const AuthForm: FunctionComponent = () => {
 
   useEffect(() => {
     errors &&
-      Object.keys(errors).map((fieldName) => {
-        toast.error(errors[fieldName as keyof FormProps]?.message ?? null)
-      })
+      Object.keys(errors).map((fieldName) =>
+        toast.error(errors[fieldName as keyof FormProps]?.message ?? null),
+      )
   }, [errors])
 
   const toggleVariant = useCallback(() => {
@@ -119,17 +119,17 @@ const AuthForm: FunctionComponent = () => {
   }
 
   return (
-    <div className="-mt-20 w-6/12 flex justify-around items-center bg-gray-50 px-2 py-6 rounded-2xl shadow-xl transition-all dark:bg-slate-800 2xl:w-5/12 max-md:flex-col max-lg:w-9/12 max-[600px]:w-11/12 max-[600px]:block max-[390px]:-mt-0">
+    <div className="-mt-20 flex w-6/12 items-center justify-around rounded-2xl bg-gray-50 px-2 py-6 shadow-xl transition-all dark:bg-slate-800 max-lg:w-9/12 max-md:flex-col max-[600px]:block max-[600px]:w-11/12 max-[390px]:-mt-0 2xl:w-5/12">
       <Image
         src="/login-animate.svg"
         alt="login animate image"
         height={500}
         width={500}
-        className="-m-10 w-6/12 mx-auto max-[600px]:w-9/12 max-[390px]:hidden"
+        className="-m-10 mx-auto w-6/12 max-[600px]:w-9/12 max-[390px]:hidden"
       />
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex m-auto flex-col gap-3 items-center max-[600px]:w-10/12"
+        className="m-auto flex flex-col items-center gap-3 max-[600px]:w-10/12"
       >
         <Text
           paragraph
@@ -171,9 +171,9 @@ const AuthForm: FunctionComponent = () => {
         <Button disable={isLoading} fullWidth type="submit">
           {isLoading ? <Load /> : variant === 'LOGIN' ? 'Login' : 'Sign in'}
         </Button>
-        <fieldset className="w-full border-t text-center border-gray-400">
+        <fieldset className="w-full border-t border-gray-400 text-center">
           <legend className="mx-auto px-3">Or</legend>
-          <div className="flex gap-2 mt-3">
+          <div className="mt-3 flex gap-2">
             <ButtonAuthSocial
               onClick={() => socialAction('google')}
               media="google"
@@ -187,24 +187,24 @@ const AuthForm: FunctionComponent = () => {
           </div>
         </fieldset>
         {variant === 'LOGIN' ? (
-          <Text className="text-center mt-3">
+          <Text className="mt-3 text-center">
             Don&apos;t have an account?{' '}
             <span
               onClick={toggleVariant}
-              className="text-sky-500 cursor-pointer hover:underline"
+              className="cursor-pointer text-sky-500 hover:underline"
             >
               Register
             </span>
           </Text>
         ) : (
-          <Text className="text-center mt-3">
+          <Text className="mt-3 text-center">
             Already have an account?{' '}
             <Link
               onClick={(e) => {
                 e.preventDefault()
                 toggleVariant()
               }}
-              className="text-sky-500 py-2 cursor-pointer hover:underline"
+              className="cursor-pointer py-2 text-sky-500 hover:underline"
               href=""
             >
               Login

@@ -22,12 +22,12 @@ const MobileItem = ({ icon: Icon, href, onClick, active }: MobileItemProps) => {
       onClick={handleClick}
       href={href}
       className={clsx(
-        'group flex gap-x-3 text-sm leading-6 font-semibold rounded-full justify-center p-3 text-gray-500 transition-all hover:bg-white hover:text-slate-900 dark:hover:text-gray-200 dark:hover:bg-slate-950 hover:shadow',
+        'group flex justify-center gap-x-3 rounded-full p-3 text-sm font-semibold leading-6 text-gray-500 transition-all hover:bg-white hover:text-slate-900 hover:shadow dark:hover:bg-slate-950 dark:hover:text-gray-200',
         active &&
           'bg-white text-slate-900 shadow dark:bg-slate-950 dark:text-gray-200',
       )}
     >
-      <Icon className="w-6 h-6" />
+      <Icon className="h-6 w-6" />
     </Link>
   )
 }

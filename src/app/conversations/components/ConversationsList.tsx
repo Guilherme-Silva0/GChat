@@ -23,12 +23,12 @@ const ConversationsList = ({ initialItems }: ConversationsListProps) => {
   return (
     <aside
       className={clsx(
-        'fixed inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-80 lg:block overflow-y-auto border-r border-gray-300 transition-all dark:border-slate-950',
-        isOpen ? 'hidden' : 'block w-full left-0',
+        'fixed inset-y-0 overflow-y-auto border-r border-gray-300 pb-20 transition-all dark:border-slate-950 lg:left-20 lg:block lg:w-80 lg:pb-0',
+        isOpen ? 'hidden' : 'left-0 block w-full',
       )}
     >
       <div className="px-5">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex items-center justify-between py-4">
           <Text paragraph className="text-2xl font-bold ">
             Messages
           </Text>
@@ -36,7 +36,7 @@ const ConversationsList = ({ initialItems }: ConversationsListProps) => {
             <div className="cursor-pointer rounded-full p-2 text-gray-500 transition-all hover:opacity-70">
               <Users2Icon />
             </div>
-            <ThemeButton className="p-2 text-gray-500 transition-all dark:text-gray-500 hover:opacity-70" />
+            <ThemeButton className="p-2 text-gray-500 transition-all hover:opacity-70 dark:text-gray-500" />
           </div>
         </div>
         {items.map((item) => (

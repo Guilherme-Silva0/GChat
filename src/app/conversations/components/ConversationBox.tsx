@@ -60,14 +60,14 @@ const ConversationBox = ({ item, selected }: ConversationBoxProps) => {
     <div
       onClick={handleClick}
       className={clsx(
-        'flex items-center relative w-full space-x-3 p-3 rounded-lg transition-all cursor-pointer dark:hover:bg-slate-800 hover:bg-gray-300',
-        selected && 'dark:bg-slate-800 bg-gray-300',
+        'relative flex w-full cursor-pointer items-center space-x-3 rounded-lg p-3 transition-all hover:bg-gray-300 dark:hover:bg-slate-800',
+        selected && 'bg-gray-300 dark:bg-slate-800',
       )}
     >
       <Avatar user={otherUser} />
-      <div className="min-w-0 flex-1 mb-1">
-        <div className="flex justify-between items-center">
-          <Text className="font-medium whitespace-nowrap overflow-hidden text-ellipsis text-lg">
+      <div className="mb-1 min-w-0 flex-1">
+        <div className="flex items-center justify-between">
+          <Text className="overflow-hidden text-ellipsis whitespace-nowrap text-lg font-medium">
             {item.name || otherUser.name}
           </Text>
           {lastMessage?.createdAt && (
@@ -78,10 +78,10 @@ const ConversationBox = ({ item, selected }: ConversationBoxProps) => {
         </div>
         <Text
           className={clsx(
-            'text-sm whitespace-nowrap overflow-hidden text-ellipsis',
+            'overflow-hidden text-ellipsis whitespace-nowrap text-sm',
             hasSeen
               ? 'text-gray-500 dark:text-gray-500'
-              : 'text-slate-900 font-medium dark:text-gray-100',
+              : 'font-medium text-slate-900 dark:text-gray-100',
           )}
         >
           {lastMessageText}

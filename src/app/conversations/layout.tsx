@@ -1,11 +1,12 @@
 import getConversations from '@/actions/getConversations'
 import Sidebar from '../../components/sidebar/Sidebar'
 import ConversationsList from './components/ConversationsList'
+import { ReactNode } from 'react'
 
 export default async function ConversationsLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   const conversations = await getConversations()
   return (

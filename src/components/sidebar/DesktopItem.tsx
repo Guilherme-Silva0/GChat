@@ -30,7 +30,7 @@ const DesktopItem = ({
       <Link
         href={href}
         className={clsx(
-          'group flex gap-x-3 rounded-md p-3 text-sm leading-6 font-semibold text-gray-500 transition-all hover:text-slate-900 hover:bg-white dark:hover:bg-slate-950 dark:hover:text-white',
+          'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-6 text-gray-500 transition-all hover:bg-white hover:text-slate-900 dark:hover:bg-slate-950 dark:hover:text-white',
           active && 'bg-white text-slate-900 dark:bg-slate-950 dark:text-white',
         )}
       >

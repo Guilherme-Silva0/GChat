@@ -1,11 +1,12 @@
 import getUsers from '@/actions/getUsers'
 import Sidebar from '@/components/sidebar/Sidebar'
 import UsersList from './components/UsersList'
+import { ReactNode } from 'react'
 
 export default async function UsersLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   const users = await getUsers()
   return (

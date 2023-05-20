@@ -29,10 +29,10 @@ const UserBox = ({ user }: { user: User }) => {
   return (
     <div
       onClick={handleClick}
-      className="flex items-center relative w-full space-x-3 p-3 rounded-lg transition-all cursor-pointer dark:hover:bg-slate-800 hover:bg-gray-300 "
+      className="relative flex w-full cursor-pointer items-center space-x-3 rounded-lg p-3 transition-all hover:bg-gray-300 dark:hover:bg-slate-800 "
     >
       <Avatar user={user} />
-      <Text className="font-medium whitespace-nowrap overflow-hidden text-ellipsis">
+      <Text className="overflow-hidden text-ellipsis whitespace-nowrap font-medium">
         {user.name}
       </Text>
     </div>
