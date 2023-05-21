@@ -6,7 +6,8 @@ import useOtherUser from '@/hooks/useOtherUser'
 import { Conversation, User } from '@prisma/client'
 import { ChevronLeftIcon, MoreVerticalIcon } from 'lucide-react'
 import Link from 'next/link'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import ProfileDrawer from './ProfileDrawer'
 
 interface HeaderProps {
   conversation: Conversation & { users: User[] }
@@ -14,36 +15,44 @@ interface HeaderProps {
 
 const Header = ({ conversation }: HeaderProps) => {
   const otherUser = useOtherUser(conversation)
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   const statusText = useMemo(() => {
     if (conversation.isGroup) {
       return `${conversation.users.length} members`
     }
 
-    return 'Active'
+    return 'Online'
   }, [conversation])
 
   return (
-    <header className="flex w-full items-center justify-between border-b-[1px] border-gray-300 bg-gray-200 px-4 py-3 shadow-sm transition-all dark:border-slate-950 dark:bg-slate-900 sm:px-4 lg:px-6">
-      <div className="flex items-center gap-3">
-        <Link
-          href="/conversations"
-          className="block cursor-pointer text-sky-500 transition-all hover:text-sky-800 lg:hidden"
-        >
-          <ChevronLeftIcon size={32} />
-        </Link>
-        <Avatar user={otherUser} />
-        <div className="flex flex-col">
-          <Text>{conversation.name || otherUser.name}</Text>
-          <Text className="text-sm font-light">{statusText}</Text>
-        </div>
-      </div>
-      <MoreVerticalIcon
-        size={32}
-        onClick={() => {}}
-        className="cursor-pointer text-sky-500 transition-all hover:text-sky-800"
+    <>
+      <ProfileDrawer
+        data={conversation}
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
       />
-    </header>
+      <header className="flex w-full items-center justify-between border-b-[1px] border-gray-300 bg-gray-200 px-4 py-3 shadow-sm transition-all dark:border-slate-950 dark:bg-slate-900 sm:px-4 lg:px-6">
+        <div className="flex items-center gap-3">
+          <Link
+            href="/conversations"
+            className="block cursor-pointer text-sky-500 transition-all hover:text-sky-800 lg:hidden"
+          >
+            <ChevronLeftIcon size={32} />
+          </Link>
+          <Avatar user={otherUser} />
+          <div className="flex flex-col">
+            <Text>{conversation.name || otherUser.name}</Text>
+            <Text className="text-sm font-light">{statusText}</Text>
+          </div>
+        </div>
+        <MoreVerticalIcon
+          size={32}
+          onClick={() => setDrawerOpen(true)}
+          className="cursor-pointer text-sky-500 transition-all hover:text-sky-800"
+        />
+      </header>
+    </>
   )
 }
 
