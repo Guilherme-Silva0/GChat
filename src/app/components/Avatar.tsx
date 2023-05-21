@@ -5,8 +5,8 @@ import Image from 'next/image'
 
 const Avatar = ({ user }: { user?: User }) => {
   return (
-    <div className="relative">
-      <div className="relative inline-block h-9 w-9 overflow-hidden rounded-full md:h-11 md:w-11">
+    <div className="relative flex items-center">
+      <div className="relative inline-block h-10 w-10 overflow-hidden rounded-full ring-2 ring-sky-600 md:h-11 md:w-11">
         <Image
           alt="Avatar user"
           src={user?.image || '/images/placeholder.jpg'}
