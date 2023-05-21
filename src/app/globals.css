@@ -10,5 +10,13 @@ html,
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  @apply h-screen w-screen bg-gray-200 dark:bg-slate-900 transition-all;
+  @apply h-full w-full bg-gray-200 dark:bg-slate-900 transition-all;
+}
+
+::-webkit-scrollbar{
+  @apply bg-transparent w-1;
+}
+
+::-webkit-scrollbar-thumb{
+  @apply bg-sky-500 rounded-sm;
 }
