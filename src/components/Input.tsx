@@ -4,13 +4,17 @@ import { FunctionComponent, useState } from 'react'
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
 import { FormProps } from '../app/components/AuthForm'
 import { FormEditProps } from './sidebar/SettingsModal'
+import { FormGroupProps } from '@/app/conversations/components/GroupChatModal'
 
 interface InputProps {
   label: string
   id: keyof FormProps | keyof FormEditProps
   type: string
   required?: boolean
-  register: UseFormRegister<FormProps> | UseFormRegister<FormEditProps>
+  register:
+    | UseFormRegister<FormProps>
+    | UseFormRegister<FormEditProps>
+    | UseFormRegister<FormGroupProps>
   errors: FieldErrors<FormProps> | FieldErrors<FormEditProps>
   disabled?: boolean
 }
