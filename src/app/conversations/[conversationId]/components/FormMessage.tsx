@@ -2,12 +2,13 @@
 
 import useConversation from '@/hooks/useConversation'
 import { zodResolver } from '@hookform/resolvers/zod'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { ImageIcon, SendIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import MessageInput from './MessageInput'
 import { CldUploadButton } from 'next-cloudinary'
+import { toast } from 'react-hot-toast'
 
 const schema = z.object({
   message: z.string().trim().nonempty('All inputs are required'),
@@ -31,24 +32,32 @@ const FormMessage = () => {
   })
 
   const onSubmit = (data: FormProps) => {
-    setValue('message', '', { shouldValidate: true })
-    axios.post('/api/messages', {
-      ...data,
-      conversationId,
-    })
+    axios
+      .post('/api/messages', {
+        ...data,
+        conversationId,
+      })
+      .catch((err: AxiosError) =>
+        toast.error((err.response?.data as string) ?? null),
+      )
+      .finally(() => setValue('message', ''))
   }
 
   const handleUpload = (file: any) => {
-    axios.post('/api/messages', {
-      image: file?.info?.secure_url,
-      conversationId,
-    })
+    axios
+      .post('/api/messages', {
+        image: file?.info?.secure_url,
+        conversationId,
+      })
+      .catch((err: AxiosError) =>
+        toast.error((err.response?.data as string) ?? null),
+      )
   }
 
   return (
     <div className="bottom-0 flex w-full items-center gap-2 bg-gray-200 p-4 transition-all dark:bg-slate-900 lg:gap-4">
       <CldUploadButton
-        options={{ maxFiles: 1 }}
+        options={{ maxFiles: 1, maxFileSize: 5242880 }} // max size 5mb
         onUpload={handleUpload}
         uploadPreset="yxbk8cqd"
       >
