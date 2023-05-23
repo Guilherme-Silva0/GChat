@@ -1,5 +1,6 @@
 'use client'
 import Avatar from '@/app/components/Avatar'
+import LoadingModal from '@/components/LoadingModal'
 import Text from '@/components/Text'
 import { User } from '@prisma/client'
 import axios, { AxiosError } from 'axios'
@@ -27,15 +28,18 @@ const UserBox = ({ user }: { user: User }) => {
   }, [router, user])
 
   return (
-    <div
-      onClick={handleClick}
-      className="relative flex w-full cursor-pointer items-center space-x-3 rounded-lg p-3 transition-all hover:bg-gray-300 dark:hover:bg-slate-800 "
-    >
-      <Avatar user={user} />
-      <Text className="overflow-hidden text-ellipsis whitespace-nowrap font-medium">
-        {user.name}
-      </Text>
-    </div>
+    <>
+      {isLoading && <LoadingModal />}
+      <div
+        onClick={handleClick}
+        className="relative flex w-full cursor-pointer items-center space-x-3 rounded-lg p-3 transition-all hover:bg-gray-300 dark:hover:bg-slate-800 "
+      >
+        <Avatar user={user} />
+        <Text className="overflow-hidden text-ellipsis whitespace-nowrap font-medium">
+          {user.name}
+        </Text>
+      </div>
+    </>
   )
 }
 
