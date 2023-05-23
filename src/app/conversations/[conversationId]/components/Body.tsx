@@ -28,7 +28,7 @@ const Body = ({ initialMessages, conversation }: BodyProps) => {
 
   if (messages.length === 0) {
     return (
-      <div className="flex h-full items-center justify-center  px-4 py-10 transition-all sm:px-6 lg:px-8">
+      <div className="flex h-full items-center justify-center px-4 transition-all sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
           <Image
             src="/hello-animate.svg"
