@@ -8,6 +8,7 @@ import { ChevronLeftIcon, MoreVerticalIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import ProfileDrawer from './ProfileDrawer'
+import AvatarGroup from '@/app/components/AvatarGroup'
 
 interface HeaderProps {
   conversation: Conversation & { users: User[] }
@@ -40,7 +41,11 @@ const Header = ({ conversation }: HeaderProps) => {
           >
             <ChevronLeftIcon size={32} />
           </Link>
-          <Avatar user={otherUser} />
+          {conversation.isGroup ? (
+            <AvatarGroup users={conversation.users} />
+          ) : (
+            <Avatar user={otherUser} />
+          )}
           <div className="flex flex-col">
             <Text>{conversation.name || otherUser.name}</Text>
             <Text className="text-sm font-light">{statusText}</Text>
