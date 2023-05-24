@@ -41,7 +41,8 @@
     "react-select": "^5.7.3",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
-    "zod": "^3.21.4"
+    "zod": "^3.21.4",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
