@@ -11,13 +11,15 @@ import useOtherUser from '@/hooks/useOtherUser'
 import { Conversation, User } from '@prisma/client'
 import { pusherClient } from '@/libs/pusher'
 import { find } from 'lodash'
+import SendingMessage from './SendingMessage'
 
 interface BodyProps {
   initialMessages: FullMessageType[]
   conversation: Conversation & { users: User[] }
+  isSending?: boolean
 }
 
-const Body = ({ initialMessages, conversation }: BodyProps) => {
+const Body = ({ initialMessages, conversation, isSending }: BodyProps) => {
   const [messages, setMessages] = useState(initialMessages)
   const bottomRef = useRef<HTMLDivElement>(null)
   const { conversationId } = useConversation()
@@ -68,7 +70,7 @@ const Body = ({ initialMessages, conversation }: BodyProps) => {
     }
   }, [conversationId])
 
-  if (messages.length === 0) {
+  if (messages.length === 0 && !isSending) {
     return (
       <div className="flex h-full items-center justify-center px-4 transition-all sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
@@ -95,7 +97,8 @@ const Body = ({ initialMessages, conversation }: BodyProps) => {
           data={message}
         />
       ))}
-      <div ref={bottomRef} className="pt-24" />
+      {isSending && <SendingMessage messages={messages} />}
+      <div ref={bottomRef} className="pt-10" />
     </div>
   )
 }
