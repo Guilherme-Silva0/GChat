@@ -36,7 +36,7 @@ const Modal = ({ children, onClose, isOpen }: ModalProps) => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative w-full transform overflow-hidden rounded-lg bg-gray-100 px-4 py-4 text-left shadow-2xl transition-all dark:bg-slate-800 sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+              <Dialog.Panel className="relative w-full transform overflow-hidden rounded-lg bg-gray-100 text-left shadow-2xl transition-all dark:bg-slate-800 sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                 <div className="absolute right-0 top-0 z-10 hidden pr-4 pt-4 sm:block">
                   <button
                     onClick={onClose}
