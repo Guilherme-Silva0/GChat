@@ -66,7 +66,7 @@ const FormMessage = ({
   return (
     <div className="bottom-0 flex w-full items-center gap-2 bg-gray-200 p-4 transition-all dark:bg-slate-900 lg:gap-4">
       <CldUploadButton
-        options={{ maxFiles: 1, maxFileSize: 5242880 }} // max size 5mb
+        options={{ maxFiles: 1, maxFileSize: 5242880, maxVideoFileSize: 0 }} // max size 5mb
         onUpload={handleUpload}
         uploadPreset="yxbk8cqd"
       >

@@ -107,7 +107,11 @@ const SettingsModal = ({
                     alt="Avatar"
                   />
                   <CldUploadButton
-                    options={{ maxFiles: 1, maxFileSize: 5242880 }} // max size 5mb
+                    options={{
+                      maxFiles: 1,
+                      maxFileSize: 5242880, // max size 5mb
+                      maxVideoFileSize: 0,
+                    }}
                     onUpload={handleUpload}
                     uploadPreset="yxbk8cqd"
                   >
