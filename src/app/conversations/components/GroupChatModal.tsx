@@ -63,7 +63,7 @@ const GroupChatModal = ({ isOpen, onClose, users }: GroupChatModalProps) => {
 
   return (
     <Modal onClose={onClose} isOpen={isOpen}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="p-4">
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
             <Text paragraph className="text-lg font-semibold leading-7">
