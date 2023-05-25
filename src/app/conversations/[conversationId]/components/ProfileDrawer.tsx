@@ -87,11 +87,11 @@ const ProfileDrawer = ({ data, isOpen, onClose }: ProfileDrawerProps) => {
                       </div>
                       <div className="relative mt-6 flex-1 px-4 sm:px-6">
                         <div className="flex flex-col items-center">
-                          <div className="mb-4 scale-150">
+                          <div className="mb-4">
                             {data.isGroup ? (
-                              <AvatarGroup users={data.users} />
+                              <AvatarGroup users={data.users} size="lg" />
                             ) : (
-                              <Avatar user={otherUser} />
+                              <Avatar user={otherUser} size="lg" />
                             )}
                           </div>
                           <Text paragraph className="text-xl font-semibold">
