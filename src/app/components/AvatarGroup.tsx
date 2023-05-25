@@ -1,13 +1,15 @@
 'use client'
 
 import { User } from '@prisma/client'
+import clsx from 'clsx'
 import Image from 'next/image'
 
 interface AvatarGroupProps {
   users: User[]
+  size?: 'sm' | 'lg'
 }
 
-const AvatarGroup = ({ users = [] }: AvatarGroupProps) => {
+const AvatarGroup = ({ users = [], size }: AvatarGroupProps) => {
   const sliceUsers = users.slice(0, 3)
 
   const positionMap = {
@@ -21,9 +23,13 @@ const AvatarGroup = ({ users = [] }: AvatarGroupProps) => {
       {sliceUsers.map((user, index) => (
         <div
           key={user.id}
-          className={`absolute inline-block h-[21px] w-[21px] overflow-hidden rounded-full ring-2 ring-sky-600 ${
-            positionMap[index as keyof typeof positionMap]
-          }`}
+          className={clsx(
+            `absolute inline-block h-[21px] w-[21px] overflow-hidden rounded-full ring-2 ring-sky-600 ${
+              positionMap[index as keyof typeof positionMap]
+            }`,
+            size === 'sm' && 'h-7 w-7',
+            size === 'lg' && 'h-16 w-16',
+          )}
         >
           <Image
             alt="avatar"
