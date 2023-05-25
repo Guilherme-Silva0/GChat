@@ -10,6 +10,7 @@ import { Trash2Icon, XIcon } from 'lucide-react'
 import { Fragment, useMemo, useState } from 'react'
 import ConfirmModal from './ConfirmModal'
 import AvatarGroup from '@/app/components/AvatarGroup'
+import useActiveList from '@/hooks/useActiveList'
 
 interface ProfileDrawerProps {
   data: Conversation & { users: User[] }
@@ -20,6 +21,8 @@ interface ProfileDrawerProps {
 const ProfileDrawer = ({ data, isOpen, onClose }: ProfileDrawerProps) => {
   const otherUser = useOtherUser(data)
   const [isOpenConfirm, setIsOpenConfirm] = useState(false)
+  const { members } = useActiveList()
+  const isActive = members.indexOf(otherUser.email!) !== -1
 
   const joinedDate = useMemo(() => {
     return format(new Date(otherUser.createdAt), 'PP')
@@ -34,8 +37,8 @@ const ProfileDrawer = ({ data, isOpen, onClose }: ProfileDrawerProps) => {
       return `${data.users.length} members`
     }
 
-    return 'Online'
-  }, [data])
+    return isActive ? 'Online' : 'Offline'
+  }, [data, isActive])
 
   return (
     <>
