@@ -32,6 +32,7 @@ const FormMessage = () => {
   })
 
   const onSubmit = (data: FormProps) => {
+    setValue('message', '')
     axios
       .post('/api/messages', {
         ...data,
@@ -40,7 +41,6 @@ const FormMessage = () => {
       .catch((err: AxiosError) =>
         toast.error((err.response?.data as string) ?? null),
       )
-      .finally(() => setValue('message', ''))
   }
 
   const handleUpload = (file: any) => {
