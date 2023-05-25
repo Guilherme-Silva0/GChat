@@ -50,12 +50,20 @@ const ConversationBox = ({ item, selected }: ConversationBoxProps) => {
   }, [userEmail, lastMessage])
 
   const lastMessageText = useMemo(() => {
-    if (lastMessage?.image) return 'Sent an image'
+    if (lastMessage?.image) {
+      return lastMessage.sender?.email === userEmail
+        ? 'You: ' + 'Sent an image'
+        : 'Sent an image'
+    }
 
-    if (lastMessage?.body) return lastMessage?.body
+    if (lastMessage?.body) {
+      return lastMessage.sender?.email === userEmail
+        ? 'You: ' + lastMessage?.body
+        : lastMessage?.body
+    }
 
     return 'Started a conversation'
-  }, [lastMessage])
+  }, [lastMessage, userEmail])
 
   return (
     <div
