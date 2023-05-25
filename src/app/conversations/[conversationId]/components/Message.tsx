@@ -25,22 +25,22 @@ const Message = ({ data, isLast }: MessageProps) => {
     .map((user) => user.name)
     .join(', ')
 
-  const container = clsx('flex gap-3 p-4', isSender && 'justify-end')
+  const container = clsx('flex gap-2 p-3', isSender && 'justify-end')
 
   const avatar = clsx(isSender && 'order-2')
 
   const body = clsx('flex flex-col gap-2', isSender && 'items-end')
 
   const message = clsx(
-    'w-fit overflow-hidden',
+    'w-fit max-w-xs h-fit break-words overflow-hidden lg:max-w-lg max-[390px]:max-w-[200px]',
     isSender ? 'bg-sky-600 text-gray-200' : 'bg-gray-800 text-gray-200',
-    data.image ? 'rounded-md p-0' : 'rounded-full py-2 px-3',
+    data.image ? 'rounded-md p-0' : 'rounded-[20px] py-2 px-4',
   )
 
   return (
     <div className={container}>
       <div className={avatar}>
-        <Avatar user={data.sender} />
+        <Avatar user={data.sender} size="sm" />
       </div>
       <div className={body}>
         <div className="flex items-center gap-1">
