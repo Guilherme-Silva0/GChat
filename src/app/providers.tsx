@@ -1,4 +1,5 @@
 'use client'
+import ActiveStatus from '@/components/ActiveStatus'
 import AuthContext from '@/context/AuthContext'
 import ToasterContext from '@/context/ToasterContext'
 import { ThemeProvider } from 'next-themes'
@@ -13,6 +14,7 @@ export function Providers({ children }: ProvidersProps) {
     <AuthContext>
       <ThemeProvider attribute="class">
         <ToasterContext />
+        <ActiveStatus />
         {children}
       </ThemeProvider>
     </AuthContext>
