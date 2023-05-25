@@ -9,6 +9,7 @@ import { z } from 'zod'
 import MessageInput from './MessageInput'
 import { CldUploadButton } from 'next-cloudinary'
 import { toast } from 'react-hot-toast'
+import { Dispatch, SetStateAction } from 'react'
 
 const schema = z.object({
   message: z.string().trim().nonempty('All inputs are required'),
@@ -16,7 +17,11 @@ const schema = z.object({
 
 export type FormProps = z.infer<typeof schema>
 
-const FormMessage = () => {
+const FormMessage = ({
+  setIsSending,
+}: {
+  setIsSending: Dispatch<SetStateAction<boolean>>
+}) => {
   const { conversationId } = useConversation()
 
   const {
@@ -33,6 +38,7 @@ const FormMessage = () => {
 
   const onSubmit = (data: FormProps) => {
     setValue('message', '')
+    setIsSending(true)
     axios
       .post('/api/messages', {
         ...data,
@@ -41,9 +47,11 @@ const FormMessage = () => {
       .catch((err: AxiosError) =>
         toast.error((err.response?.data as string) ?? null),
       )
+      .finally(() => setIsSending(false))
   }
 
   const handleUpload = (file: any) => {
+    setIsSending(true)
     axios
       .post('/api/messages', {
         image: file?.info?.secure_url,
@@ -52,6 +60,7 @@ const FormMessage = () => {
       .catch((err: AxiosError) =>
         toast.error((err.response?.data as string) ?? null),
       )
+      .finally(() => setIsSending(false))
   }
 
   return (
