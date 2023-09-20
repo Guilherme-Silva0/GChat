@@ -22,6 +22,7 @@ const getUsers = async () => {
 
     return users
   } catch (error) {
+    console.error(error)
     return []
   }
 }
